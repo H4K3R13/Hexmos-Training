@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 800px;
+          height: 100%;
+        }
+        
+        th, td {
+          border: 1px solid black;
+          padding: 2px;
+          text-align: left;
+        }
+        
+        th {
+          background-color: rgb(172, 171, 171);
+        }
+        
+        .left-div {
+
+            float: left;
+            width: 50%;
+        }
+        
+
+        body {
+            display: flex;
+            width: 100%;
+            padding: 5px;
+            font-size: 1.8rem;
+        }
+
+        .boxes{ 
+          padding: 30px;
+          border-radius: 10px; 
+          margin: 2px; 
+          height: 100%;
+        }
+        .boxes-item{
+          padding-top: 1.5rem;
+        }
+
+        .header{
+            text-align: left;
+            padding: 2rem;
+            height: 100px;
+            width: 80rem;
+            font-size: 4rem;
+            background-color: wheat;
+            border-radius: 10px;
+        }
+
+        .main{
+          height: 100vh;
+        }
+
+        .round-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            outline: none;
+            border: 1px solid #000;
+        }
+
+        .round-checkbox:checked {
+            background-color: #000;
+        }
+    </style>
+    <title>FlyWeight Polls</title>
+</head>
+<body>
+  <div class="main">
+  <div class="header">
+    FlyWeight Polls
+  </div>
+
+    <div class="left-div">
+        <div style="width: 100%;">
+            Will India win the ICC World Cup next time?     
+        </div>
+        <div class="boxes" >
+          <div class="boxes-item">
+            <input type="checkbox" class="round-checkbox">
+            <label >Yes</label><br>
+          </div> 
+          <div class="boxes-item">
+            <input type="checkbox" class="round-checkbox" >
+            <label >No</label><br>
+          </div>
+          <div class="boxes-item">
+            <button style="font-size: 1.5rem;">Vote</button>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</body>
+</html>

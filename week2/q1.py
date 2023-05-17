@@ -28,10 +28,10 @@ def filter_by_tags(polls_data, list_of_tags):
     filtered_data = []
     for poll in polls_data:
         tags = poll['Tags']
-        print(tags)
         for tag in tags:
-            if tag in list_of_tags:
-                print(tag)
+            for x in list_of_tags:
+                if x in tag:
+                    filtered_data.append(poll)
     return filtered_data
 
 
@@ -42,8 +42,11 @@ if __name__ == "__main__":
 
     #print(data)
 
-   # for x in data:
-       # print(x)
+    for x in data:
+        print("\n",x)
 
+    print("\n Output of filtered data by tag")
     data2 = filter_by_tags(data, ['phones', 'cricket'])
-    print(data2)
+    #print(data2)
+    for x in data2:
+        print("\n",x)

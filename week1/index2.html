@@ -100,7 +100,7 @@
         }
 
         .segment:nth-child(1) {
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%);
+            clip-path: polygon(0 0, 100% 0, 100%, 50% 50%);
             background-color: #ff0000;
         }
 
@@ -109,6 +109,24 @@
             background-color: #00ff00;
         }
 
+        .label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color:black;
+        }
+        
+        .yes-label {
+            transform: translate(-10%, -200%) rotate(45deg);
+        }
+
+        .no-label {
+            transform: translate(-200%, -10%) rotate(45deg); 
+            
+        }
 
     </style>
     <title>FlyWeight Polls</title>
@@ -147,6 +165,8 @@
             <div class="chart">
                 <div class="segment"></div>
                 <div class="segment"></div>
+                <div class="label yes-label">No</div>
+                <div class="label no-label">Yes</div>
             </div>
             <p style="padding-left: 60px;">Total views: 22</p>
 

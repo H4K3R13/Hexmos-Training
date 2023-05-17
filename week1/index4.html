@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 800px;
+          height: 100%;
+        }
+        
+        th, td {
+          border: 1px solid black;
+          padding: 2px;
+          text-align: left;
+        }
+        
+        th {
+          background-color: rgb(172, 171, 171);
+        }
+        
+        .left-div {
+
+            float: left;
+            width: 50%;
+            padding: 5px;
+        }
+
+        body {
+            display: flex;
+            width: 100%;
+            padding: 5px;
+            font-size: 1.8rem;
+        }
+
+        .boxes{
+          background-color: grey; 
+          padding: 30px;
+          border-radius: 10px; 
+          margin: 2px; 
+          height: 100%;
+        }
+        .boxes-item{
+          padding-top: 1.5rem;
+        }
+
+        .header{
+            text-align: left;
+            padding: 2rem;
+            height: 100px;
+            width: 80rem;
+            font-size: 4rem;
+            background-color: wheat;
+            border-radius: 10px;
+        }
+
+        .main{
+          height: 100vh;
+        }
+        input{
+            font-size: 1rem;
+        }
+    </style>
+    <title>FlyWeight Polls</title>
+</head>
+<body>
+  <div class="main">
+  <div class="header">
+    FlyWeight Polls
+  </div>
+
+    <div class="left-div">
+        <div class="boxes" >
+          <div class="boxes-item">
+            <label >Questions</label><br>
+            <input type="text"  style="height: 30px; width: 400px; border-radius: 10px;" value="Type your poll questions here">
+          </div> 
+          <div class="boxes-item">
+            <label >Answer Options</label><br>
+            <input type="text"  style="height: 30px; width: 400px; border-radius: 10px;" value="Option 1">
+            <input type="text"  style="height: 30px; width: 400px; border-radius: 10px;" value="Option 2"><br/>
+            <button style="font-size: 1rem;">Add Options</button>
+          </div> 
+          <div class="boxes-item">
+            <label >Comma separated tags</label><br>
+            <input type="text"  style="height: 30px; width: 400px; border-radius: 10px;" value="Tag1, Tag2, Tag3">
+          </div>
+          <div class="boxes-item">
+            <button style="font-size: 1rem;">Create Poll</button>
+          </div>
+        </div>
+    </div> 
+  </div>
+</body>
+</html>

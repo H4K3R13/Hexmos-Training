@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 800px;
+          height: 100%;
+        }
+        
+        th, td {
+          border: 1px solid black;
+          padding: 2px;
+          text-align: left;
+        }
+        
+        th {
+          background-color: #f2f2f2;
+        }
+        
+        .left-div {
+
+            float: left;
+            width: 20%;
+            padding: 5px;
+        }
+        
+        .left-div > input, .left-div > label {
+            margin-bottom: 8px;
+        }
+        
+        .right-div {
+            float: right;
+            width: 70%;
+            margin: 3rem;
+        }
+        
+        body {
+            display: flex;
+            width: 100%;
+            padding: 5px;
+            font-size: 1.8rem;
+        }
+
+        .boxes{
+          background-color: grey; 
+          padding: 30px;
+          border-radius: 10px; 
+          margin: 2px; 
+          height: 100%;
+        }
+        .boxes-item{
+          padding-top: 1.5rem;
+        }
+
+        .header{
+            text-align: left;
+            padding: 2rem;
+            height: 100px;
+            width: 80rem;
+            font-size: 4rem;
+            background-color: wheat;
+            border-radius: 10px;
+        }
+
+        .main{
+          height: 100vh;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+  <div class="main">
+  <div class="header">
+    FlyWeight Polls
+  </div>
+
+    <div class="left-div">
+        <div>
+            <button style="background-color: rgb(36, 200, 241); width: 100%; border-radius: 8px; padding: 2px 4px; font-size: 1.8rem;">Create Poll</button>
+        </div>
+        <div class="boxes" >
+          <div class="boxes-item">
+            <input type="checkbox">
+            <label >Sports</label><br>
+          </div> 
+          <div class="boxes-item">
+            <input type="checkbox">
+            <label >Games</label><br>
+          </div>
+          <div class="boxes-item">
+            <input type="checkbox">
+            <label >Health</label><br>
+          </div>
+          <div class="boxes-item">
+            <input type="checkbox">
+            <label >Politics</label><br>
+          </div>
+          <div class="boxes-item">
+            <button style="font-size: 1.5rem;">Filter by Tags</button>
+          </div>
+        </div>
+    </div>
+    <div class="right-div">
+        <table>
+            <tr>
+                <th>Number</th>
+                <th>Poll Question</th>
+                <th>Total Votes</th>
+                <th>Tags</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Will India win the ICC World Cup next time?</td>
+                <td>22</td>
+                <td>Sports Games</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>What will be the total corona casualties by the next year globally?</td>
+                <td>10</td>
+                <td>Health Polit</td>
+            </tr>
+        </table>
+    </div>
+  </div>
+</body>
+</html>

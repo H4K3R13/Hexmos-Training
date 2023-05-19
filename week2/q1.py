@@ -43,6 +43,7 @@ def view_poll(poll_data, pollNumber):
     for option, vote in ov.items():
         print(option + ':' + vote)
 
+    print("\n Tags : ", end=' ')
     for tag in item['Tags']:
         print(tag, end=' ')
     
@@ -74,7 +75,7 @@ if __name__ == "__main__":
         print("\n",x)
 
     print("\n Q3 : Printing the question and poll results")
-    qs_no = int(input("Enter the Question Number"))
+    qs_no = int(input("Enter the Question Number : "))
     view_poll(data,qs_no)
 
     print("\n Q4 : Voting the option")

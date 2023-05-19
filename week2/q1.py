@@ -83,7 +83,7 @@ if __name__ == "__main__":
     print(updated_data)
 
     print("\n Q5 : Saving the update_data to update_polldata.fps")
-    save_poll(updated_data,"updated_poll.json")
+    save_poll(updated_data,"updated_poll.fps")
 
 
 

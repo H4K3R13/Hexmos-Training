@@ -32,7 +32,7 @@ def vote(request, question_id):
     except (KeyError, Choice.DoesNotExist):
         return render(
             request,
-            "polls/details.html",
+            "polls/detail.html",
             {
                 "question" : question,
                 "error_question" : "You didn't select a choice",

@@ -7,6 +7,18 @@ from django.views import generic
 from .models import Question, Choice
 from django.utils import timezone
 
+#apis
+from django.http import JsonResponse
+from .models import Question,Choice
+
+def polls_api(request):
+    data_Que = Question.objects.all()
+    data_Cho = Choice.objects.all()
+    response_data = [{'field1': obj.field1, 'field2': obj.field2} for obj in data_Cho]
+    return JsonResponse(response_data, safe=False)
+
+
+
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"

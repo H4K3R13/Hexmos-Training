@@ -13,8 +13,8 @@ from .models import Question,Choice
 
 def polls_api(request):
     data_Que = Question.objects.all()
-    data_Cho = Choice.objects.all()
-    response_data = [{'field1': obj.field1, 'field2': obj.field2} for obj in data_Cho]
+    #data_Cho = Choice.objects.all()
+    response_data = [{'Question': obj.question_text, 'Pub_date': obj.pub_date} for obj in data_Que]
     return JsonResponse(response_data, safe=False)
 
 

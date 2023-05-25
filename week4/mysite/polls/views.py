@@ -14,10 +14,9 @@ from .models import Question,Choice
 def polls_api(request):
     data_Que = Question.objects.all()
     data_Cho = Choice.objects.all()
-    que_dic = [{'Question': obj.question_text, 'Pub_date': obj.pub_date } for obj in data_Que]
+    que_dic = [{'Question': obj.question_text, 'Tags': obj.tags } for obj in data_Que]
     cho_dic = [{ obj.choice_text : obj.votes } for obj in data_Cho]
     que_dic[0]["ChoiceVote"] = cho_dic
-
     # Create a new list to store the transformed data
     transformed_data = []
 
@@ -27,7 +26,7 @@ def polls_api(request):
         transformed_item = {
             "Question": item["Question"],
             "OptionVote": {},
-            "Tags": []
+            "Tags": [item["Tags"]]
         }
         
         # Extract the option votes from the "ChoiceVote" list and convert them into a dictionary
@@ -35,6 +34,7 @@ def polls_api(request):
             option_name = list(option_vote.keys())[0]
             vote_count = option_vote[option_name]
             transformed_item["OptionVote"][option_name] = vote_count
+    
         
         # Append the transformed item to the new list
         transformed_data.append(transformed_item)

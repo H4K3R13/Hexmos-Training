@@ -10,6 +10,9 @@ from django.utils import timezone
 #apis
 from django.http import JsonResponse
 from .models import Question,Choice
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def polls_api(request):
     data_Que = Question.objects.all()
@@ -19,7 +22,6 @@ def polls_api(request):
     que_dic[0]["ChoiceVote"] = cho_dic
     # Create a new list to store the transformed data
     transformed_data = []
-
     # Iterate over the original data
     for item in que_dic:
     # Create a new dictionary to store the transformed item

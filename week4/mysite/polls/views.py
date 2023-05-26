@@ -19,17 +19,18 @@ from django.views.decorators.csrf import csrf_exempt
 def create_question(request):
     if request.method == 'POST' :
         #parsing in coming data
-        payload = json.loads(request)
+        payload = json.loads(request.body.decode('utf-8'))
         #extracting data from json
         question_text = payload["Question"]
         option_vote = payload["OptionVote"]
-        tags = payload['Tags']
+        tags = payload.get('Tags', [])
+        tags_string = ','.join(tags)
         #saving Question
-        question = Question(question_text=question_text,pub_date=timezone.now(),tags=tags)
+        question = Question(question_text=question_text,pub_date=timezone.now(),tags=tags_string)
         question.save()
         #saving Choice
-        for option,vote in option_vote.items():
-            choice = Choice(question=question, choice_text=option,  vote=int(vote))
+        for key,value in option_vote.items():
+            choice = Choice(question=question, choice_text=key,  votes=int(value))
             choice.save()
         return JsonResponse({'message': 'Question created successfully'}, status=201)
     else:

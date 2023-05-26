@@ -14,17 +14,40 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+#POST 'api/question' API
+@csrf_exempt
+def create_question(request):
+    if request.method == 'POST' :
+        #parsing in coming data
+        payload = json.loads(request)
+        #extracting data from json
+        question_text = payload["Question"]
+        option_vote = payload["OptionVote"]
+        tags = payload['Tags']
+        #saving Question
+        question = Question(question_text=question_text,pub_date=timezone.now(),tags=tags)
+        question.save()
+        #saving Choice
+        for option,vote in option_vote.items():
+            choice = Choice(question=question, choice_text=option,  vote=int(vote))
+            choice.save()
+        return JsonResponse({'message': 'Question created successfully'}, status=201)
+    else:
+        return JsonResponse({'message': 'Invalid request method'}, status=400)
+
+
+# GET 'api/polls/' API
 def polls_api(request):
     data_Que = Question.objects.all()
     que_list = []
     for que in data_Que:
         choices = Choice.objects.filter(question=que)
         choice_dict = {choice.choice_text: choice.votes for choice in choices}
-
+        tags = que.tags.split(',')
         que_dict = {
             'Question': que.question_text,
             'OptionVote': choice_dict,
-            'Tags': [que.tags]
+            'Tags': tags
         }
         que_list.append(que_dict)
 

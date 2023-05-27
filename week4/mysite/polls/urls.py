@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
-from .views import polls_api, create_question
+from .views import polls_api, create_question, polls_tag
 app_name = "polls"
 
 urlpatterns = [
+    path('api/polls_tags/',polls_tag),
     path('api/polls/', polls_api),
     path('api/question/', create_question),
     path("", views.IndexView.as_view(), name="index"),

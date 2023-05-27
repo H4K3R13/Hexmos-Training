@@ -35,7 +35,27 @@ def polls(request, id):
 
         return JsonResponse({'message': 'Option incremented'}, status=200)
 
+    elif request.method == 'GET':
+        try:
+            question = Question.objects.get(pk=id)
+            print(question)
+        except Question.DoesNotExist:
+            return JsonResponse({'message': 'Question not found'}, status=404)
+        response_data = []
+        tags_q = question.tags.split(',')
+        choices = Choice.objects.filter(question=question)
+        choice_dict = {choice.choice_text: choice.votes for choice in choices}
+        question_dict = {
+                    "Question": question.question_text,
+                    "OptionVote": choice_dict,
+                    "Tags": tags_q
+            }
+        print(question_dict)
+        response_data = [question_dict] 
+        return JsonResponse(response_data, safe=False) 
+
     return JsonResponse({'message': 'Invalid request'}, status=400)
+
 
 
 

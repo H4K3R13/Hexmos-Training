@@ -14,30 +14,48 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+# PUT /polls/<id>/
+@csrf_exempt
+def polls(request, id):
+    if request.method == 'PUT':
+        id = request.GET.get('id')
+        print(id)
+        question_In = Question.objects.filter(id=id)
+        payload = json.loads(request.body.decode('utf-8'))
+        optionToIncre = payload["incrementOption"]
+        #questions = Question.objects.all()
+        choices = Choice.objects.all()
+        for choice in choices:
+         if choice.choice_text == optionToIncre and choice.question == question_In:
+                    choice.votes += 1
+                    choice.save()
+                    return JsonResponse({'message': 'Option Incremented'}, status=400)
+
+
 
 # GET 'api/polls_tag/?tags=tags1,tags2
 def polls_tag(request):
     tags_c = request.GET.get('tags', '').split(',')
-    #tags = request
-    # Query questions based on the provided tags
-    #questions = Question.objects.filter(tags__in=tags)
     questions = Question.objects.all()
-    # Create the response data
     response_data = []
+
     for question in questions:
         tags_q = question.tags.split(',')
-        if any(item in tags_c for item in tags_q):     
-                choices = Choice.objects.filter(question=question)
-                choice_dict = {choice.choice_text: choice.votes for choice in choices}
-                question_dict = {
-                    "Question": question.question_text,
-                    "OptionVote": choice_dict,
-                    "Tags": question.tags
-                }
-                response_data.append(question_dict)
-        else :
-            return JsonResponse({'message': 'Question Not Found!'}, status=400)
+        if any(item in tags_c for item in tags_q):
+            choices = Choice.objects.filter(question=question)
+            choice_dict = {choice.choice_text: choice.votes for choice in choices}
+            question_dict = {
+                "Question": question.question_text,
+                "OptionVote": choice_dict,
+                "Tags": tags_q
+            }
+            response_data.append(question_dict)
+
+    if not response_data:  # If no questions match the tags
+        return JsonResponse({'message': 'Question Not Found!'}, status=400)
+
     return JsonResponse(response_data, safe=False)
+
 
 
 

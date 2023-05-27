@@ -18,18 +18,24 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def polls(request, id):
     if request.method == 'PUT':
-        id = request.GET.get('id')
-        print(id)
-        question_In = Question.objects.filter(id=id)
+        try:
+            question = Question.objects.get(pk=id)
+        except Question.DoesNotExist:
+            return JsonResponse({'message': 'Question not found'}, status=404)
         payload = json.loads(request.body.decode('utf-8'))
-        optionToIncre = payload["incrementOption"]
-        #questions = Question.objects.all()
-        choices = Choice.objects.all()
-        for choice in choices:
-         if choice.choice_text == optionToIncre and choice.question == question_In:
-                    choice.votes += 1
-                    choice.save()
-                    return JsonResponse({'message': 'Option Incremented'}, status=400)
+        increment_option = payload.get('incrementOption')
+
+        try:
+            choice = Choice.objects.get(question=question, choice_text=increment_option)
+        except Choice.DoesNotExist:
+            return JsonResponse({'message': 'Option not found'}, status=404)
+
+        choice.votes += 1
+        choice.save()
+
+        return JsonResponse({'message': 'Option incremented'}, status=200)
+
+    return JsonResponse({'message': 'Invalid request'}, status=400)
 
 
 

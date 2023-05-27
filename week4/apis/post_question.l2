@@ -2,10 +2,10 @@ POST
 http://127.0.0.1:8000/polls/api/question/
 
 {
-   "Question": "Which Car?",
+   "Question": "Which Veg?",
    "OptionVote":{
-       "Supra": "0",
-       "Porche": "1"
+       "Carrot": "0",
+       "Chile": "1"
    },
-   "Tags": ["Cars", "Race"]
+   "Tags": ["Food", "Eat"]
 }

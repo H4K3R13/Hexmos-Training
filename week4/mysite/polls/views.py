@@ -14,6 +14,14 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+# GET /polls/tags/
+def poll_tags(request):
+    tags = Question.objects.values_list('tags', flat=True).distinct()
+    tag_list = [tag.split(',') for tag in tags]
+    flattened_tags = [tag.strip() for sublist in tag_list for tag in sublist]
+    unique_tags = list(set(flattened_tags))
+    return JsonResponse({'Tags': unique_tags})
+
 # PUT /polls/<id>/
 @csrf_exempt
 def polls(request, id):

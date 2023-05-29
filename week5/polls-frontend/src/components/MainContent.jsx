@@ -1,5 +1,5 @@
 import React from 'react'
-import { PollsTable } from './PollsTable'
+import  PollsTable from './PollsTable'
 
 function MainContent() {
   return (

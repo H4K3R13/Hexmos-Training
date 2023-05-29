@@ -1,0 +1,11 @@
+POST
+http://127.0.0.1:8000/polls/api/question/
+
+{
+   "Question": "Which Veg?",
+   "OptionVote":{
+       "Carrot": "0",
+       "Chile": "1"
+   },
+   "Tags": ["Food", "Eat"]
+}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
-
-
+import { Chart } from 'react-google-charts'
 
 function PollDetail() {
   let { id } = useParams()
@@ -22,7 +21,20 @@ function PollDetail() {
         console.log(error)
      }
   }
-  
+    //Fix Chart
+    const piedata = [["Options", "Votes"]];
+
+    const optionVote = pollsData["OptionVote"];
+    console.log(optionVote)
+    for (let key in optionVote) {
+        if (optionVote.hasOwnProperty(key)) {
+            const vote = optionVote[key];
+            piedata.push([key, vote]);
+        }
+    }
+
+    console.log("piedata",piedata)
+
   return (
     <div>
         <h1>PollDetail: {id}</h1>

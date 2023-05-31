@@ -23,15 +23,18 @@ function PollDetail() {
   }
     //Fix Chart
     const piedata = [["Options", "Votes"]];
+    pollsData.map((poll)=>{
+      Object.entries(poll.OptionVote).map(([option, vote])=>{
+        //const opvot = [...piedata]
+        piedata.push([option,vote])
+        //console.log(piedata)
+      })
+    })
+    const options = {
+      title: "Polls Votes",
+    };
 
-    const optionVote = pollsData["OptionVote"];
-    console.log(optionVote)
-    for (let key in optionVote) {
-        if (optionVote.hasOwnProperty(key)) {
-            const vote = optionVote[key];
-            piedata.push([key, vote]);
-        }
-    }
+
 
     console.log("piedata",piedata)
 
@@ -50,9 +53,14 @@ function PollDetail() {
                 </ul>
                 <p>Tags: {poll.Tags.join(", ")}</p>
             </div>
-        
-        
         ))}
+        <Chart
+          chartType="PieChart"
+          data={piedata}
+          options={options}
+          width={"100%"}
+          height={"100%"}
+          />
     </div>
 
   )

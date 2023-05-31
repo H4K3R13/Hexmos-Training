@@ -6,8 +6,9 @@ function CreatePoll() {
   const [options, setOptions] = useState([{ option: "", vote: 0 }]);
   const [tags, setTags] = useState("");
 
+  
   const handleOptionChange = (index, value) => {
-    const updatedOptions = [...options];
+    const updatedOptions = [...options]; //Used spread operator here
     updatedOptions[index].option = value;
     setOptions(updatedOptions);
   };

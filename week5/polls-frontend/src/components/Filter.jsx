@@ -5,7 +5,7 @@ import  PollsTable  from "./PollsTable";
 function Filter() {
 
   const [tags, setTags] = useState([])
-
+  const [tagsList, setTagsList] = useState([]);
   useEffect( () => {
     fetchData();
   },[]);
@@ -20,8 +20,11 @@ function Filter() {
       console.error(error)
     }
   }
-
-  const handleFilter = () => {
+  ///Fix this
+  const handleFilter = (e) => {
+    const updateTags = [...tagsList]
+    updateTags.append(e.target.value)
+    console.log(updateTags)
 
   }
   return (

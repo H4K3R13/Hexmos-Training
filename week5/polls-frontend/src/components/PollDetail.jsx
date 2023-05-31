@@ -34,16 +34,14 @@ function PollDetail() {
       title: "Polls Votes",
     };
 
-
-
     console.log("piedata",piedata)
 
   return (
     <div>
-        <h1>PollDetail: {id}</h1>
+        <h1 style={{ textAlign:"center"}}>PollDetail: {id}</h1>
         {pollsData.map((poll,index) => (
-            <div key={index}>
-                <h1>{poll.Question}</h1>
+            <div key={index} style={{ fontSize:"1.8rem"}}>
+                <h2>{poll.Question}</h2>
                 <ul>
                     {Object.entries(poll.OptionVote).map(([option, votes]) => (
                         <li key={option}>
@@ -54,13 +52,15 @@ function PollDetail() {
                 <p>Tags: {poll.Tags.join(", ")}</p>
             </div>
         ))}
-        <Chart
-          chartType="PieChart"
-          data={piedata}
-          options={options}
-          width={"100%"}
-          height={"100%"}
-          />
+        <div style={{ width:"35rem", height:"35rem"}}>
+          <Chart
+            chartType="PieChart"
+            data={piedata}
+            options={options}
+            width={"100%"}
+            height={"100%"}
+            />
+        </div>
     </div>
 
   )

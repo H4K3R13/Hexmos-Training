@@ -1,42 +1,48 @@
-import { useState, useEffect } from "react"
-import axios from 'axios'
-import  PollsTable  from "./PollsTable";
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import PollsTable from "./PollsTable";
 
 function Filter() {
+  const [tags, setTags] = useState([]);
+  //const [tagsList, setTagsList] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
-  const [tags, setTags] = useState([])
-  const [tagsList, setTagsList] = useState([]);
-  useEffect( () => {
+  useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   const fetchData = async () => {
     try {
-      const reponse = await axios.get('http://127.0.0.1:8000/polls/api/polls/tags/');
-      setTags(reponse.data["Tags"]);
-      console.log(reponse.data);
+      const response = await axios.get('http://127.0.0.1:8000/polls/api/polls/tags/');
+      setTags(response.data["Tags"]);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
-    catch(error) {
-      console.error(error)
-    }
-  }
-  ///Fix this
-  const handleFilter = (e) => {
-    const updateTags = [...tagsList]
-    updateTags.append(e.target.value)
-    console.log(updateTags)
+  };
 
-  }
+  const handleFilter = (e) => {
+    const selectedTag = e.target.value;
+    if (e.target.checked) {
+      setSelectedTags((prevTags) => [...prevTags, selectedTag]);
+    } else {
+      setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== selectedTag));
+    }
+  };
+
   return (
     <div>
       {tags.map((tag) => (
-      <div key={tag}>
-        <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter}/>
-        <label>{tag}</label>
-      </div>
+        <div key={tag}>
+          <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter} />
+          <label>{tag}</label>
+        </div>
       ))}
+      <div>
+      <PollsTable selectedTags={selectedTags} />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Filter
+export default Filter;

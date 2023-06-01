@@ -80,4 +80,4 @@ function PollDetail() {
   )
 }
 
-export default PollDetail
+export default PollDetail;

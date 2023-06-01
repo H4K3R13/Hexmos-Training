@@ -3,7 +3,7 @@ import  PollsTable from './PollsTable'
 
 function MainContent() {
   return (
-    <div>
+    <div style={{ marginTop:"2rem"}}>
         <PollsTable/>
     </div>
   )

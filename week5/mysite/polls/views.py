@@ -125,6 +125,7 @@ def polls_api(request):
         choice_dict = {choice.choice_text: choice.votes for choice in choices}
         tags = que.tags.split(',')
         que_dict = {
+            'id':que.id,
             'Question': que.question_text,
             'OptionVote': choice_dict,
             'Tags': tags

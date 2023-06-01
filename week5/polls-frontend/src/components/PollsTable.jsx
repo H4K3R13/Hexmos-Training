@@ -1,6 +1,7 @@
 import './styles/PollsTable.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 function PollsTable(props) {
   const [pollsData, setPollsData] = useState([]);
@@ -31,6 +32,7 @@ function PollsTable(props) {
           <thead>
             <tr>
               <th>Number</th>
+              <th>ID</th>
               <th>Poll Question</th>
               <th>Total Votes</th>
               <th>Tags</th>
@@ -40,7 +42,10 @@ function PollsTable(props) {
             {pollsData.map((poll, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{poll.Question}</td>
+                <td>{poll.id}</td>
+                <td>
+                  <Link to={`/poll/${poll.id}`}>{poll.Question}</Link>
+                </td>
                 <td>{Object.values(poll.OptionVote).reduce((a, b) => a + b)}</td>
                 <td>{poll.Tags.join(", ")}</td>
               </tr>

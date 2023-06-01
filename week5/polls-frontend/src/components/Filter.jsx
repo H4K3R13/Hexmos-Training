@@ -4,7 +4,7 @@ import PollsTable from "./PollsTable";
 
 function Filter() {
   const [tags, setTags] = useState([]);
-  //const [tagsList, setTagsList] = useState([]);
+ // const [tagsList, setTagsList] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function Filter() {
         </div>
       ))}
       <div>
-      <PollsTable selectedTags={selectedTags} />
+      <PollsTable selectedTags={selectedTags}/>
       </div>
     </div>
   );

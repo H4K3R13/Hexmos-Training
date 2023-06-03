@@ -32,7 +32,7 @@ function Vote() {
       console.log(response.data);
       alert(response.data["message"])
       fetchData()
-      handleAfterVote(pollId)
+      handleAfterVote()
       // Update the polls data or display a success message
     } catch (error) {
       console.log(error);
@@ -49,19 +49,19 @@ function Vote() {
   }
 
   const handleAfterVote = () => {
-    navigator(`/poll/${pollid}`)
+    navigator(-1)
   }
 
   return (
     <div>
     <div style={{ display:'flex', flexDirection:"row", gap:"5rem"}}>
-      <h1 style={{ textAlign:"center"}}>Vote Your Poll: {id}</h1>
+      {/*<h1 style={{ textAlign:"center"}}>Vote Your Poll: {id}</h1>*/}
       {pollsData.map((poll, index) => (
         <div key={index} style={{ fontSize:"1.8rem", marginTop:"2rem"}}>
           <h2>{poll.Question}</h2>
           <ul>
             {Object.entries(poll.OptionVote).map(([option]) => (
-              <li key={option}>
+              <li key={option} style={{listStyleType:"none"}}>
               <label>
                 <input
                   type="radio"
@@ -78,8 +78,8 @@ function Vote() {
         </div>
       ))}
     </div>
-    <button onClick={() => handleVote(id)} style={{ marginLeft:"20rem", padding:".5rem 1rem", fontSize:"1rem", borderRadius:"10px"}}>Vote</button><br/>
-    <button onClick={handleHome} style={{ marginLeft:"1rem", padding:".5rem 1rem", fontSize:"1rem", borderRadius:"10px"}} >Back To Home</button>
+    <button onClick={() => handleVote(id)} style={{ marginLeft:"1rem", padding:".5rem 1rem", fontSize:"1rem", borderRadius:"10px"}}>Vote</button><br/>
+    <button onClick={handleHome} style={{ marginLeft:"1rem", marginTop:"1rem", padding:".5rem 1rem", fontSize:"1rem", borderRadius:"10px"}} >Back To Home</button>
     </div>
   )
 }

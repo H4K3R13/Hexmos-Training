@@ -61,11 +61,11 @@ function CreatePoll() {
     }
 
   return (
-    <div>
-      <h1 style={{textAlign:"center"}}>Create a Poll</h1>
+    <div style={{width:"35rem", background:"grey", padding:"1rem", borderRadius:"20px", marginTop:"2rem"}}>
+      <h1>Question</h1>
       <form onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:".2rem"}}>
         <input type="text" placeholder="Enter the question" style={{padding:".5rem 1rem", fontSize:"1rem", borderRadius:"20px"}} value={poll} onChange={(e) => setPoll(e.target.value)} /><br />
-
+      <h2>Answer Optionn</h2>
         {options.map((option, index) => (
           <div key={index} style={{ display:"flex", flexDirection:"column", gap:".2rem"}} >
             <input type="text" style={{padding:".5rem 1rem", fontSize:"1rem", borderRadius:"20px", marginTop:".5rem"}} placeholder={`Option ${index + 1}`} value={option.option} onChange={(e) => handleOptionChange(index, e.target.value)} /><br/>
@@ -74,6 +74,7 @@ function CreatePoll() {
         ))}
 
         <button type="button" style={{padding:".5rem 1rem", fontSize:"1rem", marginTop:".5rem", borderRadius:"20px", background:"linear-gradient(to right, #00ff2a, #f1f6f1)"}} onClick={handleAddOption}>Add Option</button><br/>
+        <h2>Add Tags</h2>
         <input type="text" style={{padding:".5rem 1rem", fontSize:"1rem", borderRadius:"20px"}} placeholder="Add tags" value={tags} onChange={(e) => setTags(e.target.value)} /><br />
         <button type="submit" style={{padding:".5rem 1rem", fontSize:"1rem", borderRadius:"20px", background:"linear-gradient(to right, #0099ff, #f1f6f1)"}}>Submit!</button>
       </form>

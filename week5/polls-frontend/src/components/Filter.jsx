@@ -31,13 +31,15 @@ function Filter() {
   };
 
   return (
-    <div>
-      {tags.map((tag) => (
-        <div key={tag}>
-          <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter} />
-          <label>{tag}</label>
-        </div>
-      ))}
+    <div style={{display:"flex", flexDirection:"row"}}>
+      <div style={{width:"20rem"}}>
+          {tags.map((tag) => (
+            <div key={tag}>
+              <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter} />
+              <label>{tag}</label>
+            </div>
+          ))}
+      </div>
       <div>
       <PollsTable selectedTags={selectedTags}/>
       </div>

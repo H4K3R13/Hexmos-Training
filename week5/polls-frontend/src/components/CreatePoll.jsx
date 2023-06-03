@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function CreatePoll() {
   const [poll, setPoll] = useState("");
   const [options, setOptions] = useState([{ option: "", vote: 0 }]);
   const [tags, setTags] = useState("");
+  const navigate = useNavigate()
 
   
   const handleOptionChange = (index, value) => {
@@ -46,12 +48,17 @@ function CreatePoll() {
         setPoll("");
         setOptions([{ option: "", vote: 0 }]);
         setTags("");
+        handlePoll()
       })
       .catch((error) => {
         console.log("Error", error);
         alert(error.response.data["message"])
       });
   };
+
+    const handlePoll = () =>{
+      navigate("/")
+    }
 
   return (
     <div>

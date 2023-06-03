@@ -32,7 +32,7 @@ function PollsTable(props) {
           <thead>
             <tr>
               <th>Number</th>
-              <th>ID</th>
+              {/*<th>ID</th>*/}
               <th>Poll Question</th>
               <th>Total Votes</th>
               <th>Tags</th>
@@ -42,7 +42,7 @@ function PollsTable(props) {
             {pollsData.map((poll, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{poll.id}</td>
+                {/*<td>{poll.id}</td>8*/}
                 <td>
                   <Link to={`/poll/${poll.id}`}>{poll.Question}</Link>
                 </td>

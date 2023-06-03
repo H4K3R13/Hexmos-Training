@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { Chart } from 'react-google-charts'
 
+
 function PollDetail() {
   let { id } = useParams()
+  const navigate = useNavigate()
   const [pollsData, setPollsData] = useState([]);
 
   useEffect(()=>{
@@ -22,20 +24,6 @@ function PollDetail() {
     }
   }
 
-  const handleVote = async (pollId, option) => {
-    try {
-      const response = await axios.put(`http://127.0.0.1:8000/polls/api/polls_vote/${pollId}/`, {
-        incrementOption: option
-      });
-      console.log(response.data);
-      alert(response.data["message"])
-      fetchData()
-      // Update the polls data or display a success message
-    } catch (error) {
-      console.log(error);
-      // Handle the error response or display an error message
-    }
-  };
 
   // Fix Chart
   const piedata = [["Options", "Votes"]];
@@ -50,7 +38,13 @@ function PollDetail() {
 
   console.log("piedata", piedata);
 
+  const handleVoteClick = () => {
+    navigate(`/vote/${id}`);
+  };
+
   return (
+    <div>
+
     <div style={{ display:'flex', flexDirection:"row", gap:"5rem"}}>
       <h1 style={{ textAlign:"center"}}>PollDetail: {id}</h1>
       {pollsData.map((poll, index) => (
@@ -60,7 +54,6 @@ function PollDetail() {
             {Object.entries(poll.OptionVote).map(([option, votes]) => (
               <li key={option}>
                 {option}: {votes}
-                <button onClick={() => handleVote(id, option)} style={{ padding:".2rem .8rem", marginLeft:".2rem", background:"yellow", borderRadius:"10px"}}>Vote</button>
               </li>
             ))}
           </ul>
@@ -76,6 +69,8 @@ function PollDetail() {
           height={"100%"}
         />
       </div>
+    </div>
+    <button style={{background:"grey", padding:"1rem 2rem", borderRadius:"10px", fontSize:"1rem"}} onClick={handleVoteClick}>Vote This Poll</button>
     </div>
   )
 }

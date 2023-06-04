@@ -32,7 +32,7 @@ function Filter() {
 
   return (
     <div style={{display:"flex", flexDirection:"row"}}>
-      <div style={{width:"20rem"}}>
+      <div style={{width:"20rem", background:"grey", padding:"1rem", borderRadius:"20px", marginRight:"10px"}}>
           {tags.map((tag) => (
             <div key={tag}>
               <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter} />

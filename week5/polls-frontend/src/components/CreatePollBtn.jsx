@@ -4,7 +4,7 @@ function CreatePollBtn() {
     const navigator = useNavigate()
 
     return (
-        <button onClick={ () => navigator("/createpoll")} style={{padding:".5rem 1rem", background:"pink", margin:".5rem"}}>
+        <button onClick={ () => navigator("/createpoll")} style={{padding:"1rem 2rem", background:"pink", margin:".5rem", borderRadius:"10px", fontSize:"1rem"}}>
             Create A Poll!!
         </button>
       );

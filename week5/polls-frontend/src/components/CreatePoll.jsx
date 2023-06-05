@@ -61,7 +61,7 @@ function CreatePoll() {
     }
 
   return (
-    <div style={{width:"35rem", background:"grey", padding:"1rem", borderRadius:"20px", marginTop:"2rem"}}>
+    <div style={{width:"35rem", background:"grey", padding:"1rem", borderRadius:"25px", marginTop:"2rem"}}>
       <h1>Question</h1>
       <form onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:".2rem"}}>
         <input type="text" placeholder="Enter the question" style={{padding:".5rem 1rem", fontSize:"1rem", borderRadius:"20px"}} value={poll} onChange={(e) => setPoll(e.target.value)} /><br />

@@ -1,20 +1,24 @@
-import './styles/PollsTable.css';
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import  {SelectedTags}  from "./Filter";
+import './styles/PollsTable.css'
 
-function PollsTable(props) {
+
+function PollsTable() {
+  const selectedTags = useContext(SelectedTags); 
+
   const [pollsData, setPollsData] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, [props.selectedTags]);
+  }, [selectedTags]);
 
   const fetchData = async () => {
     try {
       let url = 'http://127.0.0.1:8000/polls/api/polls/';
-      if (props.selectedTags && props.selectedTags.length > 0) {
-        const tagsQuery = `?tags=${props.selectedTags.join(',')}`;
+      if (selectedTags && selectedTags.length > 0) {
+        const tagsQuery = `?tags=${selectedTags.join(',')}`;
         url = `http://127.0.0.1:8000/polls/api/polls_tags/${tagsQuery}`;
       }
       const response = await axios.get(url);
@@ -32,7 +36,6 @@ function PollsTable(props) {
           <thead>
             <tr>
               <th>Number</th>
-              {/*<th>ID</th>*/}
               <th>Poll Question</th>
               <th>Total Votes</th>
               <th>Tags</th>
@@ -42,7 +45,6 @@ function PollsTable(props) {
             {pollsData.map((poll, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                {/*<td>{poll.id}</td>8*/}
                 <td>
                   <Link to={`/poll/${poll.id}`}>{poll.Question}</Link>
                 </td>
@@ -53,7 +55,6 @@ function PollsTable(props) {
           </tbody>
         </table>
       )}
-      {props.name}
     </div>
   );
 }

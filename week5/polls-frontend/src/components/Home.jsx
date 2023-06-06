@@ -1,15 +1,19 @@
-import React from 'react'
-import Sidebar from './Sidebar'
-import MainContent from './MainContent'
-// import MainContent from './MainContent' Removed the main content becaues the PollsTable .jsx is rendered twice
-
+import { useState } from "react";
+import Sidebar from "./Sidebar";
+import MainContent from "./MainContent";
 function Home() {
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const handleSelectedTagsChange = (tags) => {
+    setSelectedTags(tags);
+  };
+
   return (
-    <div style={{ display:"flex", flexDirection:"row"}}>
-        <Sidebar/>
-        <MainContent/>
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <Sidebar selectedTags={selectedTags} onSelectedTagsChange={handleSelectedTagsChange} />
+      <MainContent selectedTags={selectedTags} />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

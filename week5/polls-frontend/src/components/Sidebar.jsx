@@ -1,13 +1,13 @@
 import CreatePollBtn from "./CreatePollBtn"
 import Filter from "./Filter"
 
-function Sidebar() {
+function Sidebar({ selectedTags, onSelectedTagsChange }) {
   return (
     <div>
-        <CreatePollBtn/>
-        <Filter/>
+      <CreatePollBtn />
+      <Filter selectedTags={selectedTags} onSelectedTagsChange={onSelectedTagsChange} />
     </div>
-  )
+  );
 }
 
 export default Sidebar

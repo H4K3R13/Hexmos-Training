@@ -1,13 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import PollsTable from "./PollsTable";
 
-
-export const SelectedTags = createContext();
-
-function Filter() {
+function Filter({ selectedTags, onSelectedTagsChange }) {
   const [tags, setTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -26,28 +21,27 @@ function Filter() {
   const handleFilter = (e) => {
     const selectedTag = e.target.value;
     if (e.target.checked) {
-      setSelectedTags((prevTags) => [...prevTags, selectedTag]);
+      onSelectedTagsChange([...selectedTags, selectedTag]);
     } else {
-      setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== selectedTag));
+      onSelectedTagsChange(selectedTags.filter((tag) => tag !== selectedTag));
     }
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div style={{ width: "20rem", background: "grey", padding: "1rem", borderRadius: "20px", marginRight: "10px" }}>
-        {tags.map((tag) => (
-          <div key={tag}>
-            <input type="checkbox" id={tag} name={tag} value={tag} onChange={handleFilter} />
-            <label>{tag}</label>
-          </div>
-        ))}
-      </div>
-      <div>
-      
-        <SelectedTags.Provider value={selectedTags}>
-          <PollsTable />
-        </SelectedTags.Provider>
-      </div>
+    <div style={{ width: "20rem", background: "grey", padding: "1rem", borderRadius: "20px", marginRight: "10px" }}>
+      {tags.map((tag) => (
+        <div key={tag}>
+          <input
+            type="checkbox"
+            id={tag}
+            name={tag}
+            value={tag}
+            checked={selectedTags.includes(tag)}
+            onChange={handleFilter}
+          />
+          <label>{tag}</label>
+        </div>
+      ))}
     </div>
   );
 }

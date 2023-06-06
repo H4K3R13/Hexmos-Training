@@ -1,12 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-//import  {SelectedTags}  from "./Filter";
 import './styles/PollsTable.css'
 
 
 function PollsTable(props) {
-  //const selectedTags = useContext(SelectedTags); 
 
   const [pollsData, setPollsData] = useState([]);
 

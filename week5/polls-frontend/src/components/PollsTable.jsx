@@ -1,22 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './styles/PollsTable.css'
+import { SelectedTagsContext } from "./Home";
 
 
-function PollsTable(props) {
+
+function PollsTable() {
+  const { selectedTags } = useContext(SelectedTagsContext);
 
   const [pollsData, setPollsData] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, [props.selectedTags]);
+  }, [selectedTags]);
 
   const fetchData = async () => {
     try {
       let url = 'http://127.0.0.1:8000/polls/api/polls/';
-      if (props.selectedTags && props.selectedTags.length > 0) {
-        const tagsQuery = `?tags=${props.selectedTags.join(',')}`;
+      if (selectedTags && selectedTags.length > 0) {
+        const tagsQuery = `?tags=${selectedTags.join(',')}`;
         url = `http://127.0.0.1:8000/polls/api/polls_tags/${tagsQuery}`;
       }
       const response = await axios.get(url);

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import { SelectedTagsContext } from "./Home";
 
-function Filter({ selectedTags, onSelectedTagsChange }) {
+
+function Filter() {
+  const { selectedTags, setSelectedTags } = useContext(SelectedTagsContext);
   const [tags, setTags] = useState([]);
+
 
   useEffect(() => {
     fetchData();
@@ -21,9 +25,9 @@ function Filter({ selectedTags, onSelectedTagsChange }) {
   const handleFilter = (e) => {
     const selectedTag = e.target.value;
     if (e.target.checked) {
-      onSelectedTagsChange([...selectedTags, selectedTag]);
+      setSelectedTags([...selectedTags, selectedTag]);
     } else {
-      onSelectedTagsChange(selectedTags.filter((tag) => tag !== selectedTag));
+      setSelectedTags(selectedTags.filter((tag) => tag !== selectedTag));
     }
   };
 

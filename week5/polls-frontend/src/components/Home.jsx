@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
+
+export const SelectedTagsContext = createContext();
+
 function Home() {
+
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const handleSelectedTagsChange = (tags) => {
-    setSelectedTags(tags);
-  };
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <Sidebar selectedTags={selectedTags} onSelectedTagsChange={handleSelectedTagsChange} />
-      <MainContent selectedTags={selectedTags} />
+      <SelectedTagsContext.Provider value={{ selectedTags, setSelectedTags }}>
+        <Sidebar />
+        <MainContent />
+      </SelectedTagsContext.Provider>
     </div>
   );
 }
